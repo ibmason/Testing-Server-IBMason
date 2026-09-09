@@ -1036,18 +1036,59 @@ display: none;
 }
 
 @media screen and (max-width: 768px) {
-/* Reverted to the proven CSS-transform marquee technique (same one used on
-   desktop, and confirmed working on a real reference site at this exact
-   breakpoint) now that the real root cause — the global img override — is fixed.
-   The JS-driven scroll strip below is left in place but dormant. */
+/* Switched to a fade-cycle carousel on mobile instead — the CSS-transform
+   marquee kept failing in ways we couldn't fully resolve, so mobile now uses
+   a fundamentally simpler mechanism (opacity fade + image swap) that avoids
+   width calculations and scroll math entirely. Desktop is untouched. */
 .desktop-marquee {
-display: block !important;
+display: none !important;
 }
 .m-carousel-wrapper {
 display: none !important;
 }
 .ibm-mlogo-strip-wrapper {
 display: none !important;
+}
+}
+
+/* ===== animation-card-logos ===== */
+.ibm-mlogo-fade-card { display: none; }
+
+@media screen and (max-width: 768px) {
+.ibm-mlogo-fade-card {
+display: block;
+background-color: #ffffff;
+border-radius: 12px;
+padding: 32px 16px;
+margin-top: -1px;
+}
+
+.ibm-mlogo-fade-grid {
+display: flex;
+align-items: center;
+justify-content: space-around;
+gap: 12px;
+}
+
+.ibm-mlogo-fade-slot {
+flex: 1 1 0;
+display: flex;
+align-items: center;
+justify-content: center;
+height: 44px;
+}
+
+.ibm-mlogo-fade-slot img {
+max-height: 36px;
+max-width: 90%;
+width: auto;
+object-fit: contain;
+opacity: 1;
+transition: opacity 0.4s ease;
+}
+
+.ibm-mlogo-fade-slot img.ibm-fade-out {
+opacity: 0;
 }
 }
 
