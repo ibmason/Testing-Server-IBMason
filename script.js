@@ -87,7 +87,7 @@ try {
 } catch(e) { console.warn("Script error in animation-card-logos:", e); }
 })();
 
-// ===== animation-card-logos (NEW mobile-only strip) =====
+// ===== animation-card-logos (mobile strip — simplified, no more load-gate) =====
 (function() {
 try {
 (function() {
@@ -95,26 +95,20 @@ try {
     var wrapper = document.getElementById('ibmMobileLogoStrip');
     if (!wrapper) return;
 
-    var started = false;
-    var rafId = null;
     var paused = false;
     var speed = 0.6;
 
     function step() {
       if (!paused) {
         var halfWidth = wrapper.scrollWidth / 2;
-        wrapper.scrollLeft += speed;
-        if (wrapper.scrollLeft >= halfWidth) {
-          wrapper.scrollLeft -= halfWidth;
+        if (halfWidth > 0) {
+          wrapper.scrollLeft += speed;
+          if (wrapper.scrollLeft >= halfWidth) {
+            wrapper.scrollLeft -= halfWidth;
+          }
         }
       }
-      rafId = requestAnimationFrame(step);
-    }
-
-    function start() {
-      if (started) return;
-      started = true;
-      rafId = requestAnimationFrame(step);
+      requestAnimationFrame(step);
     }
 
     wrapper.addEventListener('touchstart', function() { paused = true; }, { passive: true });
@@ -122,22 +116,7 @@ try {
     wrapper.addEventListener('mousedown', function() { paused = true; });
     wrapper.addEventListener('mouseup', function() { paused = false; });
 
-    var imgs = wrapper.querySelectorAll('img');
-    if (!imgs.length) { start(); return; }
-    var remaining = imgs.length;
-    function done() {
-      remaining--;
-      if (remaining <= 0) start();
-    }
-    imgs.forEach(function(img) {
-      if (img.complete) {
-        done();
-      } else {
-        img.addEventListener('load', done, { once: true });
-        img.addEventListener('error', done, { once: true });
-      }
-    });
-    setTimeout(start, 4000);
+    requestAnimationFrame(step);
   }
 
   if (document.readyState === 'loading') {
