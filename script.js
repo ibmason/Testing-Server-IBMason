@@ -47,6 +47,48 @@ content.scrollIntoView({ behavior: "smooth", block: "end" });
 } catch(e) { console.warn("Script error in Menu Bar:", e); }
 })();
 
+// ===== animation-card-logos =====
+(function() {
+try {
+(function() {
+  function initMarquee(card) {
+    var imgs = card.querySelectorAll('img');
+    if (!imgs.length) {
+      card.classList.add('marquee-ready');
+      return;
+    }
+    var remaining = imgs.length;
+    function done() {
+      remaining--;
+      if (remaining <= 0) {
+        card.classList.add('marquee-ready');
+      }
+    }
+    imgs.forEach(function(img) {
+      if (img.complete) {
+        done();
+      } else {
+        img.addEventListener('load', done, { once: true });
+        img.addEventListener('error', done, { once: true }); // don't block forever on a broken image
+      }
+    });
+    // Safety net: if something never fires (very unlikely), start anyway after 4s so it's never stuck frozen
+    setTimeout(function() { card.classList.add('marquee-ready'); }, 4000);
+  }
+
+  function init() {
+    document.querySelectorAll('.marquee-card').forEach(initMarquee);
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+  } else {
+    init();
+  }
+})();
+} catch(e) { console.warn("Script error in animation-card-logos:", e); }
+})();
+
 // ===== placement-percentage-our-mentors-first-year-compensation =====
 (function() {
 try {
@@ -88,7 +130,6 @@ try {
     if (!targets.length) return;
 
     if (!('IntersectionObserver' in window)) {
-      // Fallback for very old browsers: just show final numbers, no animation
       targets.forEach(function(el) { el.dataset.counted = 'true'; });
       return;
     }
@@ -446,31 +487,28 @@ msg.style.display = 'block';
 (function() {
 try {
 function triggerSectionScroll() {
-// Set flag so destination section knows to scroll
 sessionStorage.setItem('pendingScrollToHIW', 'true');
 }
 
 function checkAndPerformScroll() {
 if (sessionStorage.getItem('pendingScrollToHIW') === 'true') {
-// Poll briefly to ensure Carrd finishes DOM rendering and scroll reset
 var checkCount = 0;
 var scrollInterval = setInterval(function() {
 var target = document.getElementById('how-it-works-section');
 checkCount++;
 
-if (target && target.offsetParent !== null) { // Ensures element is visible
+if (target && target.offsetParent !== null) {
 clearInterval(scrollInterval);
 sessionStorage.removeItem('pendingScrollToHIW');
 
-// Timeout gives Carrd's scroll-to-top handler time to finish before we scroll down
 setTimeout(function() {
-var yOffset = -40; // Optional offset for header clearance
+var yOffset = -40;
 var y = target.getBoundingClientRect().top + window.pageYOffset + yOffset;
 window.scrollTo({ top: y, behavior: 'smooth' });
 }, 150);
 }
 
-if (checkCount > 30) { // Safety fallback after 3s
+if (checkCount > 30) {
 clearInterval(scrollInterval);
 sessionStorage.removeItem('pendingScrollToHIW');
 }
@@ -478,7 +516,6 @@ sessionStorage.removeItem('pendingScrollToHIW');
 }
 }
 
-// Run on initial load and whenever Carrd switches sections via hashchange
 window.addEventListener('load', checkAndPerformScroll);
 window.addEventListener('hashchange', checkAndPerformScroll);
 } catch(e) { console.warn("Script error in faq:", e); }
