@@ -1025,9 +1025,18 @@ object-fit: contain;
 /* ===== animation-card-logos ===== */
 /* ===== Mobile-only logo strip — completely independent from the desktop marquee above ===== */
 
-/* Hide the new mobile strip on desktop entirely */
-.ibm-mlogo-strip-wrapper {
+.ibm-mlogo-card-mobile {
 display: none;
+}
+
+@media screen and (max-width: 768px) {
+.ibm-mlogo-card-mobile {
+display: block;
+background-color: #ffffff;
+border-radius: 12px;
+padding: 24px 0;
+margin-top: -1px;
+}
 }
 
 @media screen and (max-width: 768px) {
