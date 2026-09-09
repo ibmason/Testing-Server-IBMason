@@ -1068,6 +1068,11 @@ display: flex;
 align-items: center;
 justify-content: space-around;
 gap: 12px;
+margin-bottom: 22px;
+}
+
+.ibm-mlogo-fade-grid:last-child {
+margin-bottom: 0;
 }
 
 .ibm-mlogo-fade-slot {
@@ -1079,9 +1084,9 @@ height: 44px;
 }
 
 .ibm-mlogo-fade-slot img {
-max-height: 36px;
-max-width: 90%;
+height: 36px;
 width: auto;
+max-width: 92%;
 object-fit: contain;
 opacity: 1;
 transition: opacity 0.4s ease;
