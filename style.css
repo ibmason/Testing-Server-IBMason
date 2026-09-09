@@ -1031,61 +1031,23 @@ display: none;
 
 @media screen and (max-width: 768px) {
 .ibm-mlogo-card-mobile {
-display: block;
-background-color: #ffffff;
-border-radius: 12px;
-padding: 24px 0;
-margin-top: -1px;
+display: none;
 }
 }
 
 @media screen and (max-width: 768px) {
-/* Hide BOTH old mobile attempts, show only the new strip */
+/* Reverted to the proven CSS-transform marquee technique (same one used on
+   desktop, and confirmed working on a real reference site at this exact
+   breakpoint) now that the real root cause — the global img override — is fixed.
+   The JS-driven scroll strip below is left in place but dormant. */
 .desktop-marquee {
-display: none !important;
+display: block !important;
 }
 .m-carousel-wrapper {
 display: none !important;
 }
-
 .ibm-mlogo-strip-wrapper {
-display: block !important;
-width: 100%;
-overflow-x: auto;
-overflow-y: hidden;
-scrollbar-width: none;
--ms-overflow-style: none;
--webkit-overflow-scrolling: touch;
--webkit-mask-image: linear-gradient(to right, transparent 0%, #000 6%, #000 94%, transparent 100%);
-mask-image: linear-gradient(to right, transparent 0%, #000 6%, #000 94%, transparent 100%);
-}
-
-.ibm-mlogo-strip-wrapper::-webkit-scrollbar {
-display: none;
-}
-
-.ibm-mlogo-strip {
-display: flex;
-align-items: center;
-width: max-content;
-}
-
-.ibm-mlogo-item {
-flex: 0 0 auto;
-display: flex;
-align-items: center;
-justify-content: center;
-height: 48px;
-padding: 0 20px;
-box-sizing: content-box;
-}
-
-.ibm-mlogo-item img {
-height: 30px;
-width: auto;
-max-width: 110px;
-object-fit: contain;
-display: block;
+display: none !important;
 }
 }
 
