@@ -880,7 +880,8 @@ overflow: visible;
 /* Base image sizes */
 .marquee-set img {
 height: 50px;
-width: 220px;
+width: auto;
+max-width: 220px;
 object-fit: contain;
 flex-shrink: 0;
 transition: transform 0.25s ease;
@@ -890,17 +891,26 @@ transform: scale(1.12);
 }
 
 /* Specific Dimension Overrides without Scale Transform (Prevents Scrollbars) */
-.size-bofa { height: 70px !important; width: 280px !important; }
-.size-barclays { height: 85px !important; width: 320px !important; }
-.size-mit { height: 75px !important; width: 250px !important; }
-.size-rbc { height: 115px !important; width: 380px !important; }
-.size-uva { height: 95px !important; width: 320px !important; }
-.size-yale { height: 80px !important; width: 260px !important; }
+.size-bofa { height: 70px !important; max-width: 280px !important; }
+.size-barclays { height: 85px !important; max-width: 320px !important; }
+.size-mit { height: 75px !important; max-width: 250px !important; }
+.size-rbc { height: 115px !important; max-width: 380px !important; }
+.size-uva { height: 95px !important; max-width: 320px !important; }
+.size-yale { height: 80px !important; max-width: 260px !important; }
 
-.size-vanderbilt { height: 75px !important; width: 250px !important; }
-.size-chicago { height: 65px !important; width: 240px !important; }
-.size-stanford { height: 65px !important; width: 240px !important; }
-.size-goldman { height: 60px !important; width: 220px !important; }
+.size-vanderbilt { height: 75px !important; max-width: 250px !important; }
+.size-chicago { height: 65px !important; max-width: 240px !important; }
+.size-stanford { height: 65px !important; max-width: 240px !important; }
+.size-goldman { height: 60px !important; max-width: 220px !important; }
+
+/* Marquee stays paused until JS confirms every logo image has finished loading —
+   prevents the track's width from shifting mid-animation on slower connections */
+.marquee-track {
+animation-play-state: paused;
+}
+.marquee-card.marquee-ready .marquee-track {
+animation-play-state: running;
+}
 
 .track-left { animation: scrollLeft 35s linear infinite; }
 .track-right { animation: scrollRight 35s linear infinite; }
@@ -946,19 +956,20 @@ padding-right: 40px !important;
 
 .marquee-set img {
 height: 32px !important;
-width: 130px !important;
+width: auto !important;
+max-width: 130px !important;
 }
 
-.size-bofa { height: 44px !important; width: 165px !important; }
-.size-barclays { height: 52px !important; width: 190px !important; }
-.size-mit { height: 46px !important; width: 150px !important; }
-.size-rbc { height: 68px !important; width: 225px !important; }
-.size-uva { height: 56px !important; width: 190px !important; }
-.size-yale { height: 48px !important; width: 155px !important; }
-.size-vanderbilt { height: 46px !important; width: 150px !important; }
-.size-chicago { height: 40px !important; width: 145px !important; }
-.size-stanford { height: 40px !important; width: 145px !important; }
-.size-goldman { height: 36px !important; width: 135px !important; }
+.size-bofa { height: 44px !important; max-width: 165px !important; }
+.size-barclays { height: 52px !important; max-width: 190px !important; }
+.size-mit { height: 46px !important; max-width: 150px !important; }
+.size-rbc { height: 68px !important; max-width: 225px !important; }
+.size-uva { height: 56px !important; max-width: 190px !important; }
+.size-yale { height: 48px !important; max-width: 155px !important; }
+.size-vanderbilt { height: 46px !important; max-width: 150px !important; }
+.size-chicago { height: 40px !important; max-width: 145px !important; }
+.size-stanford { height: 40px !important; max-width: 145px !important; }
+.size-goldman { height: 36px !important; max-width: 135px !important; }
 
 .track-left, .track-right {
 animation-duration: 22s !important;
