@@ -371,14 +371,10 @@ overflow-x: hidden !important;
 box-sizing: border-box !important;
 }
 
-/* 2. Force Multi-Column Layouts to Stack Vertically */
+/* 2. Force Multi-Column Layouts to Stack Vertically (scoped — was matching too broadly before) */
 .ib-footer-top,
 .ib-footer-menu-container,
-.ib-footer-nav,
-.flex-container,
-.row,
-[class*="grid"],
-[class*="flex"] {
+.ib-footer-nav {
 flex-direction: column !important;
 align-items: center !important;
 text-align: center !important;
@@ -386,13 +382,11 @@ gap: 16px !important;
 width: 100% !important;
 }
 
-/* 3. Scale Down Fixed-Width Elements & Cards */
+/* 3. Scale Down Fixed-Width Elements & Cards on the LEGAL pages only (was unscoped and hitting every img/iframe sitewide before) */
 .ib-legal-card,
 .ib-legal-wrapper,
-.container,
-.card,
-iframe,
-img {
+.ib-legal-wrapper img,
+.ib-legal-wrapper iframe {
 width: 100% !important;
 max-width: 100% !important;
 padding-left: 16px !important;
