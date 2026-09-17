@@ -1,3 +1,24 @@
+/* ==========================================================================
+   DESIGN TOKENS — added for consistency going forward.
+   Existing rules below still use hardcoded values in most places;
+   this documents the real palette and gives new/updated rules one
+   source of truth instead of another hand-typed hex code.
+   ========================================================================== */
+:root {
+--ibm-navy: #17193b;
+--ibm-ink: #111111;
+--ibm-green: #10b981;
+--ibm-green-dark: #059b67;
+--ibm-gray-text: #4a5568;
+--ibm-gray-light: #64748b;
+--ibm-border: #e2e8f0;
+--ibm-font-serif: 'Playfair Display', Georgia, serif;
+--ibm-font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+--ibm-radius: 8px;
+--ibm-shadow-card: 0 10px 30px rgba(23,25,59,0.06);
+--ibm-shadow-card-hover: 0 16px 32px rgba(16,185,129,0.14);
+}
+
 /* ===== Global Reset ===== */
 html, body { margin: 0 !important; padding: 0 !important; }
 *, *::before, *::after { box-sizing: border-box; }
@@ -332,7 +353,7 @@ padding-top: 20px !important;
 
 .ibm-custom-nav-wrapper .ibm-cta-btn {
 width: 100% !important;
-background-color: #52b69a !important;
+background-color: var(--ibm-green) !important;
 color: #ffffff !important;
 padding: 12px !important;
 font-size: 15px !important;
@@ -345,6 +366,10 @@ body.ibm-nav-scroll-lock {
 position: fixed !important;
 width: 100% !important;
 overflow: hidden !important;
+}
+
+html, body {
+overflow-x: hidden;
 }
 
 /* ===== Background color for WHOLE WEBSITE ===== */
@@ -820,10 +845,10 @@ font-size: 60px !important;
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&display=swap');
 
 .marquee-card {
-max-width: 1100px;
+max-width: 1000px;
 margin: 0 auto;
 background-color: #ffffff;
-padding: 50px 0;
+padding: 34px 0;
 border-radius: 12px;
 font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
 overflow: hidden;
@@ -832,10 +857,10 @@ overflow: hidden;
 .marquee-title {
 text-align: center;
 font-family: 'Playfair Display', Georgia, serif;
-font-size: 32px;
+font-size: 26px;
 font-weight: 700;
 color: #111111;
-margin: 0 0 50px 0;
+margin: 0 0 30px 0;
 }
 
 .desktop-marquee {
@@ -845,8 +870,8 @@ display: block;
 .marquee-row {
 width: 100%;
 overflow: visible;
-margin-bottom: 30px;
-padding: 15px 0;
+margin-bottom: 16px;
+padding: 6px 0;
 -webkit-mask-image: linear-gradient(to right, transparent 0%, #000 15%, #000 85%, transparent 100%);
 mask-image: linear-gradient(to right, transparent 0%, #000 15%, #000 85%, transparent 100%);
 }
@@ -873,9 +898,9 @@ overflow: visible;
 
 /* Base image sizes */
 .marquee-set img {
-height: 50px;
+height: 40px;
 width: auto;
-max-width: 220px;
+max-width: 170px;
 object-fit: contain;
 flex-shrink: 0;
 transition: transform 0.25s ease;
@@ -885,17 +910,20 @@ transform: scale(1.12);
 }
 
 /* Specific Dimension Overrides without Scale Transform (Prevents Scrollbars) */
-.size-bofa { height: 70px !important; max-width: 280px !important; }
-.size-barclays { height: 85px !important; max-width: 320px !important; }
-.size-mit { height: 75px !important; max-width: 250px !important; }
-.size-rbc { height: 115px !important; max-width: 380px !important; }
-.size-uva { height: 95px !important; max-width: 320px !important; }
-.size-yale { height: 80px !important; max-width: 260px !important; }
+.size-bofa { height: 54px !important; max-width: 210px !important; }
+.size-barclays { height: 100px !important; max-width: 320px !important; }
+.size-mit { height: 88px !important; max-width: 280px !important; }
+.size-rbc { height: 108px !important; max-width: 340px !important; }
+.size-uva { height: 106px !important; max-width: 335px !important; }
+.size-yale { height: 76px !important; max-width: 250px !important; }
 
-.size-vanderbilt { height: 75px !important; max-width: 250px !important; }
-.size-chicago { height: 65px !important; max-width: 240px !important; }
-.size-stanford { height: 65px !important; max-width: 240px !important; }
-.size-goldman { height: 60px !important; max-width: 220px !important; }
+.size-vanderbilt { height: 92px !important; max-width: 290px !important; }
+.size-chicago { height: 96px !important; max-width: 300px !important; }
+.size-stanford { height: 58px !important; max-width: 210px !important; }
+.size-goldman { height: 56px !important; max-width: 210px !important; }
+.size-cornell { height: 60px !important; max-width: 220px !important; }
+.size-wellsfargo { height: 74px !important; max-width: 240px !important; }
+.size-morganstanley { height: 52px !important; max-width: 200px !important; }
 
 /* Marquee stays paused until JS confirms every logo image has finished loading —
    prevents the track's width from shifting mid-animation on slower connections */
@@ -1051,7 +1079,12 @@ display: none !important;
 }
 }
 
-/* ===== animation-card-logos ===== */
+/* ===== animation-card-logos =====
+   Mobile-only fade-cycle carousel (desktop keeps the original continuous
+   marquee, untouched, restored below). Slots sized generously so the
+   individually up-scaled logos (see script.js SIZE_BOOST) have room to
+   breathe without being clipped, and overflow is explicitly visible up
+   the whole chain so nothing here can ever trigger a scrollbar. */
 .ibm-mlogo-fade-card { display: none; }
 
 @media screen and (max-width: 768px) {
@@ -1061,14 +1094,17 @@ background-color: #ffffff;
 border-radius: 12px;
 padding: 32px 16px;
 margin-top: -1px;
+overflow: hidden !important;
+touch-action: pan-y;
 }
 
 .ibm-mlogo-fade-grid {
 display: flex;
 align-items: center;
 justify-content: space-around;
-gap: 12px;
-margin-bottom: 22px;
+gap: 16px;
+margin-bottom: 26px;
+overflow: hidden;
 }
 
 .ibm-mlogo-fade-grid:last-child {
@@ -1080,16 +1116,20 @@ flex: 1 1 0;
 display: flex;
 align-items: center;
 justify-content: center;
-height: 44px;
+height: 108px;
+overflow: hidden;
+scrollbar-width: none;
+-ms-overflow-style: none;
 }
+.ibm-mlogo-fade-slot::-webkit-scrollbar { display: none; }
 
 .ibm-mlogo-fade-slot img {
-height: 36px;
+height: 34px;
 width: auto;
-max-width: 92%;
+max-width: 88%;
 object-fit: contain;
 opacity: 1;
-transition: opacity 0.4s ease;
+transition: opacity 0.5s ease;
 }
 
 .ibm-mlogo-fade-slot img.ibm-fade-out {
@@ -1167,9 +1207,11 @@ flex-direction: column;
 }
 
 .ib-blueprint-card:hover {
-transform: translateY(-6px);
-box-shadow: 0 20px 40px rgba(16, 185, 129, 0.08);
-border-color: rgba(16, 185, 129, 0.2);
+transform: translateY(-6px) scale(1.045);
+box-shadow: 0 24px 48px rgba(16, 185, 129, 0.14);
+border-color: rgba(16, 185, 129, 0.35);
+z-index: 2;
+position: relative;
 }
 
 .ib-step-num {
@@ -2436,7 +2478,7 @@ font-size: 10px !important;
 1. MAIN SECTION & CARD LAYOUT
 ========================================================================== */
 .team-section-container {
-background-color: #ffffff;
+background-color: #EDF0F2;
 padding: 130px 20px 80px 20px;
 font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
 color: #111111;
@@ -2482,8 +2524,9 @@ margin: 0 auto 50px auto;
 
 .team-card {
 background-color: #f7fafc;
-border: 1px solid #e2e8f0;
-border-radius: 8px;
+border: 1px solid rgba(23,25,59,0.08);
+border-radius: 12px;
+box-shadow: var(--ibm-shadow-card);
 padding: 40px 30px;
 display: flex;
 flex-direction: column;
@@ -2497,8 +2540,9 @@ transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .team-card:hover {
-transform: translateY(-2px);
-box-shadow: 0 8px 20px rgba(0,0,0,0.03);
+transform: translateY(-6px);
+box-shadow: var(--ibm-shadow-card-hover);
+border-color: rgba(16,185,129,0.35);
 }
 
 .highlight-card {
@@ -2655,7 +2699,7 @@ margin-right: auto !important;
 
 /* ===== ib-recruiting-code ===== */
 .ib-recruiting-section-container {
-background-color: #ffffff;
+background-color: #EDF0F2;
 padding: 130px 20px 60px 20px;
 font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
 color: #111111;
@@ -2679,13 +2723,13 @@ text-transform: uppercase;
 }
 
 .ib-recruiting-main-title {
-font-family: 'Playfair Display', Georgia, serif;
-font-size: 40px;
+font-family: var(--ibm-font-serif);
+font-size: 38px;
 font-weight: 700;
 letter-spacing: -0.5px;
 line-height: 1.2;
 margin-bottom: 20px;
-color: #111111;
+color: var(--ibm-ink);
 }
 
 .ib-recruiting-subtitle {
@@ -2706,8 +2750,9 @@ margin: 0 auto 60px auto;
 
 .ib-recruiting-card {
 background-color: #ffffff;
-border: 1.5px solid #e2e8f0;
-border-radius: 8px;
+border: 1px solid rgba(23,25,59,0.08);
+border-radius: 12px;
+box-shadow: var(--ibm-shadow-card);
 padding: 45px 35px;
 display: flex;
 flex-direction: column;
@@ -2716,9 +2761,9 @@ box-sizing: border-box;
 }
 
 .ib-recruiting-card:hover {
-transform: translateY(-4px);
-box-shadow: 0 16px 32px rgba(0,0,0,0.06);
-border-color: #10b981; /* Brand Teal */
+transform: translateY(-6px);
+box-shadow: var(--ibm-shadow-card-hover);
+border-color: var(--ibm-green);
 }
 
 .ib-recruiting-card .card-title {
@@ -2918,7 +2963,7 @@ z-index: 2;
 
 /* ===== series-79-code ===== */
 .series79-section-container {
-background-color: #fafbfc;
+background-color: #EDF0F2;
 padding: 130px 20px 60px 20px;
 font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
 color: #111111;
@@ -2942,13 +2987,13 @@ text-transform: uppercase;
 }
 
 .series79-main-title {
-font-family: 'Playfair Display', Georgia, serif;
-font-size: 40px;
+font-family: var(--ibm-font-serif);
+font-size: 38px;
 font-weight: 700;
 letter-spacing: -0.5px;
 line-height: 1.2;
 margin-bottom: 20px;
-color: #111111;
+color: var(--ibm-ink);
 }
 
 .series79-subtitle {
@@ -2973,8 +3018,9 @@ margin: 0 auto 50px auto;
 
 .series79-card {
 background-color: #ffffff;
-border: 1.5px solid #e2e8f0;
-border-radius: 8px;
+border: 1px solid rgba(23,25,59,0.08);
+border-radius: 12px;
+box-shadow: var(--ibm-shadow-card);
 padding: 40px;
 display: flex;
 flex-direction: column;
@@ -2983,9 +3029,9 @@ box-sizing: border-box;
 }
 
 .series79-card:hover {
-transform: translateY(-4px);
-border-color: #10b981; /* Brand Teal */
-box-shadow: 0 12px 24px rgba(0,0,0,0.05);
+transform: translateY(-6px);
+border-color: var(--ibm-green);
+box-shadow: var(--ibm-shadow-card-hover);
 }
 
 .series79-card .card-title {
@@ -3063,12 +3109,13 @@ text-align: center;
 .series79-cta-btn {
 display: inline-block;
 text-decoration: none;
-background-color: #111111;
+background-color: var(--ibm-ink);
 color: #ffffff;
 font-size: 15px;
 font-weight: 600;
 padding: 18px 40px;
-border-radius: 6px;
+border-radius: var(--ibm-radius);
+box-shadow: var(--ibm-shadow-card);
 transition: all 0.2s ease;
 cursor: pointer;
 }
@@ -3095,7 +3142,7 @@ padding: 30px;
 /* General Section & Container */
 .pe-blueprint-section {
 width: 100% !important;
-background-color: #ffffff !important;
+background-color: #EDF0F2 !important;
 padding: 130px 20px 60px 20px !important;
 box-sizing: border-box !important;
 font-family: 'Plus Jakarta Sans', -apple-system, sans-serif;
@@ -3123,10 +3170,11 @@ margin-bottom: 12px;
 }
 
 .pe-title {
-font-family: 'Playfair Display', Georgia, serif;
+font-family: var(--ibm-font-serif);
 font-size: 38px;
 font-weight: 700;
-color: #111827 !important;
+letter-spacing: -0.5px;
+color: var(--ibm-ink) !important;
 margin: 0 0 16px 0;
 }
 
@@ -3148,8 +3196,9 @@ gap: 30px;
 /* Individual Cards */
 .pe-card {
 background-color: #f9fafb !important;
-border: 1px solid #e5e7eb !important;
-border-radius: 16px;
+border: 1px solid rgba(23,25,59,0.08) !important;
+border-radius: 12px;
+box-shadow: var(--ibm-shadow-card);
 padding: 36px;
 box-sizing: border-box;
 transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
@@ -3217,10 +3266,11 @@ margin-top: 50px;
 
 .pe-cta-btn {
 display: inline-block;
-background-color: #111827;
+background-color: var(--ibm-ink);
 color: #ffffff !important;
 padding: 14px 32px;
-border-radius: 6px;
+border-radius: var(--ibm-radius);
+box-shadow: var(--ibm-shadow-card);
 font-size: 14px;
 font-weight: 700;
 text-decoration: none;
@@ -3259,7 +3309,7 @@ min-height: auto;
 
 /* ===== pre-desk-training ===== */
 #carrd-predesk-wrapper {
-background-color: #ffffff !important;
+background-color: #EDF0F2 !important;
 padding: 130px 20px 80px 20px !important;
 font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
 color: #111111 !important;
@@ -3286,12 +3336,13 @@ text-transform: uppercase !important;
 }
 
 .cp-title {
-font-family: 'Playfair Display', Georgia, serif !important;
+font-family: var(--ibm-font-serif) !important;
 font-size: 38px !important;
 font-weight: 700 !important;
+letter-spacing: -0.5px !important;
 margin: 0 0 20px 0 !important;
-color: #111111 !important;
-line-height: 1.25 !important;
+color: var(--ibm-ink) !important;
+line-height: 1.2 !important;
 }
 
 .cp-subtitle {
@@ -3357,8 +3408,9 @@ gap: 20px !important;
 /* CARDS */
 .cp-feature-card {
 background-color: #f7fafc !important;
-border: 1px solid #e2e8f0 !important;
-border-radius: 8px !important;
+border: 1px solid rgba(23,25,59,0.08) !important;
+border-radius: 12px !important;
+box-shadow: var(--ibm-shadow-card) !important;
 padding: 40px 30px !important;
 text-align: center !important;
 box-sizing: border-box !important;
@@ -3369,8 +3421,9 @@ transition: transform 0.2s ease, box-shadow 0.2s ease !important;
 }
 
 .cp-feature-card:hover {
-transform: translateY(-2px) !important;
-box-shadow: 0 8px 20px rgba(0,0,0,0.03) !important;
+transform: translateY(-6px) !important;
+box-shadow: var(--ibm-shadow-card-hover) !important;
+border-color: rgba(16,185,129,0.35) !important;
 }
 
 .cp-feature-card h4 {
@@ -3397,8 +3450,9 @@ border: none !important;
 
 .cp-step-card {
 background-color: #f7fafc !important;
-border: 1px solid #e2e8f0 !important;
-border-radius: 8px !important;
+border: 1px solid rgba(23,25,59,0.08) !important;
+border-radius: 12px !important;
+box-shadow: var(--ibm-shadow-card) !important;
 padding: 30px 20px !important;
 text-align: center !important;
 flex: 1 1 calc(25% - 20px) !important;
@@ -3408,8 +3462,9 @@ transition: transform 0.2s ease, box-shadow 0.2s ease !important;
 }
 
 .cp-step-card:hover {
-transform: translateY(-2px) !important;
-box-shadow: 0 8px 20px rgba(0,0,0,0.03) !important;
+transform: translateY(-6px) !important;
+box-shadow: var(--ibm-shadow-card-hover) !important;
+border-color: rgba(16,185,129,0.35) !important;
 }
 
 .cp-num {
@@ -3467,10 +3522,11 @@ margin: 0 0 24px 0 !important;
 
 .cp-cta-btn {
 display: inline-block !important;
-background-color: #111111 !important;
+background-color: var(--ibm-ink) !important;
 color: #ffffff !important;
 padding: 14px 34px !important;
-border-radius: 8px !important;
+border-radius: var(--ibm-radius) !important;
+box-shadow: var(--ibm-shadow-card) !important;
 font-size: 14.5px !important;
 font-weight: 700 !important;
 text-decoration: none !important;
@@ -3498,7 +3554,7 @@ transform: translateY(-2px) !important;
 #ib-results-root {
 all: initial;
 display: block !important;
-background-color: #F6F5F2 !important;
+background-color: #EDF0F2 !important;
 padding: 130px 20px 40px 20px !important;
 font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
 color: #1a1a1a !important;
@@ -3638,7 +3694,7 @@ overflow: hidden !important;
 
 /* ===== finra-series-79-successes ===== */
 .s79-grid-container {
-background-color: #F6F5F2;
+background-color: #EDF0F2;
 padding: 40px 20px 60px 20px;
 font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
 color: #1a1a1a;
@@ -3767,7 +3823,7 @@ font-size: 20px !important;
 /* ===== what-clients-achieve-with-ib-mason ===== */
 /* Section Base */
 .ib-achieve-section {
-background-color: #F6F5F2;
+background-color: #EDF0F2;
 padding: 50px 20px;
 font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
 color: #1a1a1a;
@@ -4136,9 +4192,9 @@ font-weight: 700; line-height: 1.2; color: #0f172a; margin: 0 0 20px 0; letter-s
 .resources-grid-matrix { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; align-items: stretch; }
 
 .resources-card-item {
-background-color: #ffffff; border: 1px solid #e2e8f0; border-radius: 12px;
+background-color: #ffffff; border: 1px solid rgba(23,25,59,0.08); border-radius: 12px;
 padding: 24px; display: flex; flex-direction: column; justify-content: space-between;
-box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.02); transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.3s ease; box-sizing: border-box;
+box-shadow: var(--ibm-shadow-card); transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.3s ease; box-sizing: border-box;
 }
 
 .resources-card-item:hover { transform: translateY(-6px); border-color: rgba(16, 185, 129, 0.4); box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.05); }
@@ -4588,21 +4644,22 @@ box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.08);
 }
 
 .contact-submit-btn {
-font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-background-color: #111111;
+font-family: var(--ibm-font-sans);
+background-color: var(--ibm-ink);
 color: #ffffff;
 font-size: 15px;
 font-weight: 600;
 padding: 16px;
 border: none;
-border-radius: 6px;
+border-radius: var(--ibm-radius);
 cursor: pointer;
 transition: all 0.2s ease;
 margin-top: 10px;
 }
 
 .contact-submit-btn:hover {
-background-color: #2d3748;
+background-color: var(--ibm-green);
+transform: translateY(-2px);
 }
 
 @media (max-width: 768px) {
@@ -5194,4 +5251,538 @@ animation: ibmPageFadeOut 0.4s cubic-bezier(0.7,0,0.84,0) forwards !important;
 @keyframes ibmPageFadeOut {
 from { opacity: 1; transform: translateY(0); }
 to { opacity: 0; transform: translateY(-14px); }
+}
+
+/* ===== services.html landing page (moved out of inline <style> for consistency with the rest of the site) ===== */
+.ibm-svc-landing { max-width: 1000px; margin: 0 auto; padding: 140px 24px 100px 24px; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
+.ibm-svc-header { text-align: center; margin-bottom: 48px; }
+.ibm-svc-tag { color: #10b981; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; font-size: 13px; }
+.ibm-svc-title { font-family: 'Playfair Display', Georgia, serif; font-size: 2.6rem; font-weight: 800; color: #111111; margin: 10px 0 0 0; }
+.ibm-svc-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; }
+.ibm-svc-card { display: block; background-color: #ffffff; border: 1px solid rgba(23,25,59,0.08); box-shadow: var(--ibm-shadow-card); border-radius: 12px; padding: 32px; text-decoration: none; transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease; }
+.ibm-svc-card:hover { transform: translateY(-6px); box-shadow: var(--ibm-shadow-card-hover); border-color: var(--ibm-green); }
+.ibm-svc-card h3 { font-family: 'Playfair Display', Georgia, serif; font-size: 1.4rem; color: #111111; margin: 0 0 10px 0; }
+.ibm-svc-card p { font-size: 14px; color: #4a5568; margin: 0 0 16px 0; line-height: 1.5; }
+.ibm-svc-arrow { font-size: 13px; font-weight: 700; color: #10b981; }
+@media (max-width: 640px) {
+.ibm-svc-landing { padding: 110px 16px 60px 16px; }
+.ibm-svc-title { font-size: 1.9rem; }
+.ibm-svc-grid { grid-template-columns: 1fr; gap: 14px; }
+.ibm-svc-card { padding: 22px; }
+}
+
+
+/* ==========================================================================
+   NEW: DETAIL & COMPONENT PASS — micro-interactions, texture, and small
+   components added on top of the existing design system. Purely additive:
+   nothing above this line was removed, so this only ever adds visual detail.
+   ========================================================================== */
+
+/* ---- Custom text selection + scrollbar, so even copy/paste and scrolling feel branded ---- */
+::selection {
+background-color: rgba(16,185,129,0.22);
+color: var(--ibm-ink);
+}
+
+
+
+/* ---- Brand-colored focus ring instead of the default blue browser outline ---- */
+a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visible {
+outline: 2px solid var(--ibm-green) !important;
+outline-offset: 2px !important;
+}
+
+/* ---- Hamburger animates into an X when the drawer opens, instead of just sitting static ---- */
+.ibm-custom-nav-wrapper .ibm-mobile-toggle span {
+transition: transform 0.3s cubic-bezier(0.16,1,0.3,1), opacity 0.2s ease;
+}
+.ibm-custom-nav-wrapper .ibm-nav-checkbox:checked ~ .ibm-mobile-toggle span:nth-child(1) {
+transform: translateY(7px) rotate(45deg);
+}
+.ibm-custom-nav-wrapper .ibm-nav-checkbox:checked ~ .ibm-mobile-toggle span:nth-child(2) {
+opacity: 0;
+}
+.ibm-custom-nav-wrapper .ibm-nav-checkbox:checked ~ .ibm-mobile-toggle span:nth-child(3) {
+transform: translateY(-7px) rotate(-45deg);
+}
+
+/* ---- Sliding underline on nav links instead of a flat color swap ---- */
+@media screen and (min-width: 769px) {
+.ibm-custom-nav-wrapper .ibm-nav-item {
+position: relative;
+}
+.ibm-custom-nav-wrapper .ibm-nav-item::after {
+content: '';
+position: absolute;
+left: 0;
+bottom: 0;
+width: 0%;
+height: 2px;
+background-color: var(--ibm-green);
+transition: width 0.25s cubic-bezier(0.16,1,0.3,1);
+}
+.ibm-custom-nav-wrapper .ibm-nav-item:hover::after {
+width: 100%;
+}
+}
+
+/* ---- Nav gets a real shadow + slightly tighter height once the page is scrolled ---- */
+/* (the '.ibm-nav-scrolled' class is toggled by script.js) */
+.ibm-custom-nav-wrapper .ibm-navbar {
+transition: box-shadow 0.3s ease;
+}
+.ibm-custom-nav-wrapper.ibm-nav-scrolled .ibm-navbar {
+box-shadow: 0 4px 20px rgba(23,25,59,0.1);
+}
+
+/* ---- Scroll progress bar pinned under the nav ---- */
+#ibm-scroll-progress {
+position: fixed;
+top: 0;
+left: 0;
+height: 3px;
+width: 0%;
+background: linear-gradient(90deg, var(--ibm-green), var(--ibm-navy));
+z-index: 9999;
+transition: width 0.1s linear;
+}
+
+/* ---- Floating back-to-top button ---- */
+#ibm-back-to-top {
+position: fixed;
+right: 24px;
+bottom: 24px;
+width: 46px;
+height: 46px;
+border-radius: 50%;
+background-color: var(--ibm-ink);
+color: #ffffff;
+border: none;
+display: flex;
+align-items: center;
+justify-content: center;
+cursor: pointer;
+opacity: 0;
+pointer-events: none;
+transform: translateY(12px);
+transition: opacity 0.25s ease, transform 0.25s ease, background-color 0.25s ease;
+box-shadow: 0 10px 24px rgba(23,25,59,0.18);
+z-index: 999;
+}
+#ibm-back-to-top.ibm-visible {
+opacity: 1;
+pointer-events: auto;
+transform: translateY(0);
+}
+#ibm-back-to-top:hover {
+background-color: var(--ibm-green);
+}
+#ibm-back-to-top svg {
+width: 18px;
+height: 18px;
+}
+@media screen and (max-width: 768px) {
+#ibm-back-to-top { right: 16px; bottom: 16px; width: 42px; height: 42px; }
+}
+
+/* ---- Scroll-reveal fade-up, applied by script.js to headings/cards without touching HTML ---- */
+.ibm-reveal {
+opacity: 0;
+transform: translateY(22px);
+transition: opacity 0.7s cubic-bezier(0.16,1,0.3,1), transform 0.7s cubic-bezier(0.16,1,0.3,1);
+}
+.ibm-reveal.ibm-revealed {
+opacity: 1;
+transform: translateY(0);
+}
+@media (prefers-reduced-motion: reduce) {
+.ibm-reveal { opacity: 1; transform: none; transition: none; }
+}
+
+/* ---- Corner accent + top bar sweep on the unified card system, for a bit more life on hover ---- */
+.ib-recruiting-card, .series79-card, .pe-card, .cp-feature-card, .cp-step-card, .team-card, .resources-card-item, .ibm-svc-card {
+position: relative;
+overflow: hidden;
+}
+.ib-recruiting-card::before, .series79-card::before, .pe-card::before, .cp-feature-card::before, .cp-step-card::before, .team-card::before, .resources-card-item::before, .ibm-svc-card::before {
+content: '';
+position: absolute;
+top: 0;
+left: 0;
+right: 0;
+height: 3px;
+background: linear-gradient(90deg, var(--ibm-green), var(--ibm-navy));
+transform: scaleX(0);
+transform-origin: left;
+transition: transform 0.35s cubic-bezier(0.16,1,0.3,1);
+}
+.ib-recruiting-card:hover::before, .series79-card:hover::before, .pe-card:hover::before, .cp-feature-card:hover::before, .cp-step-card:hover::before, .team-card:hover::before, .resources-card-item:hover::before, .ibm-svc-card:hover::before {
+transform: scaleX(1);
+}
+
+/* ---- Buttons get a subtle diagonal light sweep on hover ---- */
+.ibm-cta-btn, .series79-cta-btn, .pe-cta-btn, .cp-cta-btn, .booking-btn, .contact-submit-btn, .submit-btn, .hero-btn-primary {
+position: relative;
+overflow: hidden;
+}
+.ibm-cta-btn::after, .series79-cta-btn::after, .pe-cta-btn::after, .cp-cta-btn::after, .booking-btn::after, .contact-submit-btn::after, .submit-btn::after, .hero-btn-primary::after {
+content: '';
+position: absolute;
+top: 0;
+left: -60%;
+width: 40%;
+height: 100%;
+background: linear-gradient(120deg, transparent, rgba(255,255,255,0.35), transparent);
+transform: skewX(-20deg);
+transition: left 0.55s ease;
+}
+.ibm-cta-btn:hover::after, .series79-cta-btn:hover::after, .pe-cta-btn:hover::after, .cp-cta-btn:hover::after, .booking-btn:hover::after, .contact-submit-btn:hover::after, .submit-btn:hover::after, .hero-btn-primary:hover::after {
+left: 130%;
+}
+
+/* ---- Gradient text on the hero highlight word, instead of flat green ---- */
+.hero-highlight {
+background: linear-gradient(90deg, #10b981, #6ee7b7);
+-webkit-background-clip: text;
+background-clip: text;
+color: transparent;
+}
+
+/* ---- FAQ: circular icon button instead of a bare "+" character, fills green when open ---- */
+.faq-icon {
+display: inline-flex;
+align-items: center;
+justify-content: center;
+width: 26px;
+height: 26px;
+border-radius: 50%;
+border: 1.5px solid rgba(16,185,129,0.35);
+transition: transform 0.3s cubic-bezier(0.16,1,0.3,1), background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease;
+}
+.faq-item.open .faq-icon {
+background-color: var(--ibm-green);
+border-color: var(--ibm-green);
+color: #ffffff !important;
+}
+.faq-item {
+transition: background-color 0.25s ease;
+border-radius: 8px;
+}
+.faq-item:hover {
+background-color: rgba(16,185,129,0.04);
+}
+
+/* ---- Checkmark bullets on feature lists, replacing default browser bullets ---- */
+.card-bullets, .pe-feature-list {
+list-style: none;
+padding-left: 0;
+margin: 0;
+}
+.card-bullets li, .pe-feature-list li {
+position: relative;
+padding-left: 26px;
+margin-bottom: 10px;
+}
+.card-bullets li::before, .pe-feature-list li::before {
+content: '✓';
+position: absolute;
+left: 0;
+top: 0;
+color: var(--ibm-green);
+font-weight: 800;
+}
+
+/* ---- Subtle dot-grid texture behind the founder/team header, for depth without noise ---- */
+.team-header {
+position: relative;
+}
+.team-header::before {
+content: '';
+position: absolute;
+inset: -30px -20px auto -20px;
+height: 180px;
+background-image: radial-gradient(rgba(23,25,59,0.06) 1.5px, transparent 1.5px);
+background-size: 16px 16px;
+z-index: -1;
+pointer-events: none;
+}
+
+/* ---- Footer gets a gradient top border instead of a flat line ---- */
+.ib-footer-line {
+border: none;
+height: 1px;
+background: linear-gradient(90deg, transparent, rgba(16,185,129,0.5), transparent);
+margin: 24px 0;
+}
+
+/* ---- Value-compare VS badge gets a soft pulsing glow ---- */
+.value-compare-vs-badge {
+box-shadow: 0 0 0 0 rgba(16,185,129,0.5);
+animation: ibmVsPulse 2.6s infinite;
+}
+@keyframes ibmVsPulse {
+0% { box-shadow: 0 0 0 0 rgba(16,185,129,0.45); }
+70% { box-shadow: 0 0 0 10px rgba(16,185,129,0); }
+100% { box-shadow: 0 0 0 0 rgba(16,185,129,0); }
+}
+
+/* ---- Smooth in-page scrolling for anchor links (e.g. FAQ's back-to-process link) ---- */
+html {
+scroll-behavior: smooth;
+}
+
+/* ---- Stat numbers get a quick soft-pop the instant they finish counting up ---- */
+.ibm-count-pop {
+display: inline-block;
+animation: ibmCountPop 0.55s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+.ibm-count-glow-card {
+animation: ibmCardGlow 1.1s ease-out;
+}
+@keyframes ibmCardGlow {
+0% { box-shadow: 0 12px 30px rgba(23,25,59,0.06); }
+35% { box-shadow: 0 22px 55px rgba(16,185,129,0.45); }
+100% { box-shadow: 0 12px 30px rgba(23,25,59,0.06); }
+}
+@keyframes ibmCountPop {
+0% { transform: scale(1); }
+45% { transform: scale(1.16); }
+100% { transform: scale(1); }
+}
+
+
+/* ==========================================================================
+   NEW: PE + Pre-Desk page fixes, plus matching touches on other service pages.
+   ========================================================================== */
+
+/* ---- Private Equity: the icon slot in each card was an empty, unstyled div
+   (zero size, invisible) — never actually finished. Turned it into a numbered
+   circle matching the Pre-Desk roadmap's existing numbering language. ---- */
+.pe-card-icon {
+width: 36px;
+height: 36px;
+border: 1.5px solid var(--ibm-green);
+border-radius: 50%;
+display: flex;
+align-items: center;
+justify-content: center;
+font-family: var(--ibm-font-serif);
+font-size: 14px;
+font-weight: 700;
+color: var(--ibm-green);
+flex-shrink: 0;
+}
+.pe-grid .pe-card:nth-child(1) .pe-card-icon::before { content: "01"; }
+.pe-grid .pe-card:nth-child(2) .pe-card-icon::before { content: "02"; }
+.pe-grid .pe-card:nth-child(3) .pe-card-icon::before { content: "03"; }
+
+/* ---- Same numbered-circle language extended to IB Recruiting and Series 79
+   cards for cross-page consistency (pure CSS counters, no HTML changes) ---- */
+.ib-recruiting-grid, .series79-grid {
+counter-reset: ibm-card-counter;
+}
+.ib-recruiting-card .card-title, .series79-card .card-title {
+counter-increment: ibm-card-counter;
+}
+.ib-recruiting-card .card-title::before, .series79-card .card-title::before {
+content: counter(ibm-card-counter, decimal-leading-zero);
+display: flex;
+align-items: center;
+justify-content: center;
+width: 36px;
+height: 36px;
+margin-bottom: 16px;
+border: 1.5px solid var(--ibm-green);
+border-radius: 50%;
+font-family: var(--ibm-font-serif);
+font-size: 14px;
+font-weight: 700;
+color: var(--ibm-green);
+}
+
+/* ---- PE + Pre-Desk headers get a soft radial highlight behind them instead
+   of sitting on flat white — a bit more depth without adding real texture ---- */
+.pe-header, .cp-header {
+position: relative;
+}
+.pe-header::before, .cp-header::before {
+content: '';
+position: absolute;
+top: -40px;
+left: 50%;
+transform: translateX(-50%);
+width: 560px;
+max-width: 90vw;
+height: 280px;
+background: radial-gradient(ellipse at center, rgba(16,185,129,0.07), transparent 70%);
+z-index: -1;
+pointer-events: none;
+}
+
+/* ---- Pre-Desk badge pills: flat gray → tinted, with a small lift on hover ---- */
+.cp-badge {
+background-color: rgba(16,185,129,0.07) !important;
+color: var(--ibm-navy) !important;
+border: 1px solid rgba(16,185,129,0.25) !important;
+transition: transform 0.2s ease, border-color 0.2s ease, background-color 0.2s ease;
+}
+.cp-badge:hover {
+transform: translateY(-2px);
+border-color: var(--ibm-green) !important;
+background-color: rgba(16,185,129,0.12) !important;
+}
+
+/* ---- Pre-Desk roadmap: connecting line behind the 4 numbered steps, desktop only
+   (kept off narrower widths where the cards wrap, so it never looks broken) ---- */
+@media screen and (min-width: 900px) {
+.cp-roadmap-grid {
+position: relative;
+}
+.cp-roadmap-grid::before {
+content: '';
+position: absolute;
+top: 48px;
+left: 12%;
+right: 12%;
+height: 2px;
+background: linear-gradient(90deg, rgba(16,185,129,0.05), rgba(16,185,129,0.4), rgba(16,185,129,0.05));
+z-index: 0;
+}
+.cp-step-card {
+position: relative;
+z-index: 1;
+}
+}
+
+
+/* ==========================================================================
+   NEW: PE page — real layout redesign (not just recolor). On desktop, each
+   pillar becomes a full-width horizontal row: icon+title fixed on the left,
+   description and a 2-up wrapped bullet list on the right. Falls back to the
+   existing stacked 3-card layout below 1025px (unchanged, already proven).
+   ========================================================================== */
+@media (min-width: 1025px) {
+.pe-grid {
+grid-template-columns: 1fr !important;
+gap: 20px !important;
+}
+.pe-card {
+display: grid;
+grid-template-columns: 150px 1fr;
+column-gap: 32px;
+align-items: start;
+padding: 34px 42px;
+border-left: 4px solid var(--ibm-green);
+}
+.pe-card-header {
+grid-column: 1;
+grid-row: 1 / span 2;
+flex-direction: column !important;
+align-items: flex-start !important;
+gap: 16px !important;
+margin-bottom: 0 !important;
+}
+.pe-card-icon {
+width: 54px;
+height: 54px;
+font-size: 18px;
+}
+.pe-card-title {
+font-size: 21px;
+}
+.pe-card-description {
+grid-column: 2;
+grid-row: 1;
+margin-bottom: 14px !important;
+min-height: 0 !important;
+}
+.pe-feature-list {
+grid-column: 2;
+grid-row: 2;
+flex-direction: row !important;
+flex-wrap: wrap;
+gap: 10px 32px !important;
+}
+.pe-feature-list li {
+flex: 1 1 280px;
+}
+.pe-card:nth-child(even) {
+background-color: #f2f6f5 !important;
+}
+}
+
+/* ==========================================================================
+   NEW: Pre-Desk "Core Mastery Areas" — icon per pillar + a distinct accent
+   color per card instead of 4 identical flat gray boxes.
+   ========================================================================== */
+.cp-feature-card h4 {
+position: relative;
+}
+.cp-feature-card h4::before {
+display: block;
+font-size: 30px;
+margin-bottom: 12px;
+}
+.cp-grid-4 .cp-feature-card:nth-child(1) h4::before { content: "⚙️"; }
+.cp-grid-4 .cp-feature-card:nth-child(2) h4::before { content: "📊"; }
+.cp-grid-4 .cp-feature-card:nth-child(3) h4::before { content: "⚡"; }
+.cp-grid-4 .cp-feature-card:nth-child(4) h4::before { content: "🎯"; }
+
+.cp-grid-4 .cp-feature-card {
+border-top: 3px solid transparent !important;
+}
+.cp-grid-4 .cp-feature-card:nth-child(1) { border-top-color: var(--ibm-green) !important; }
+.cp-grid-4 .cp-feature-card:nth-child(2) { border-top-color: var(--ibm-navy) !important; }
+.cp-grid-4 .cp-feature-card:nth-child(3) { border-top-color: #6ee7b7 !important; }
+.cp-grid-4 .cp-feature-card:nth-child(4) { border-top-color: #4a5568 !important; }
+
+
+/* ==========================================================================
+   NEW: Nav links were never actually centered between the logo and the CTA —
+   confirmed the flex/auto-margin approach wasn't resolving as intended.
+   Switched to CSS Grid with the nav-links wrapper "unwrapped" via
+   display:contents, so the logo / links / CTA become 3 true grid columns
+   and the middle one is genuinely centered regardless of content width.
+   Desktop only — the mobile drawer layout is untouched.
+   ========================================================================== */
+@media screen and (min-width: 769px) {
+.ibm-custom-nav-wrapper .ibm-nav-container {
+display: grid !important;
+grid-template-columns: auto 1fr auto !important;
+align-items: center !important;
+column-gap: 24px !important;
+}
+.ibm-custom-nav-wrapper .ibm-nav-links {
+display: contents !important;
+}
+.ibm-custom-nav-wrapper .ibm-nav-col.ibm-nav-left {
+grid-column: 1 !important;
+}
+.ibm-custom-nav-wrapper .ibm-nav-center-links {
+grid-column: 2 !important;
+justify-self: center !important;
+margin: 0 !important;
+}
+.ibm-custom-nav-wrapper .ibm-nav-cta {
+grid-column: 3 !important;
+}
+}
+
+
+/* ==========================================================================
+   NEW: Kill every scrollbar's visual appearance on mobile, everywhere,
+   full stop. Scroll functionality (touch swipe on carousels etc.) is
+   untouched — this only hides the track/thumb graphic itself, which serves
+   no purpose on a touch device and was showing up in places it shouldn't.
+   ========================================================================== */
+@media screen and (max-width: 768px) {
+* {
+scrollbar-width: none !important;
+-ms-overflow-style: none !important;
+}
+*::-webkit-scrollbar {
+display: none !important;
+width: 0 !important;
+height: 0 !important;
+}
 }
