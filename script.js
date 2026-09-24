@@ -168,6 +168,15 @@ try {
   // so all 4 rows show different logos from one another at any given moment.
   var ROW_OFFSET_STEP = Math.floor(LOGOS.length / ROW_COUNT);
 
+  // iPhone-only fix: iOS Safari has a known bug where swapping an <img> src
+  // while it's mid-opacity-transition can leave a stale, still-composited
+  // frame on screen — two different logos appearing to render on top of each
+  // other. This only affects iOS; every other platform is untouched below.
+  var IS_IPHONE = /iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+  if (IS_IPHONE) {
+    document.documentElement.classList.add('ibm-ios-logo-fix');
+  }
+
   function initFadeRow(grid, rowIndex) {
     var slots = grid.querySelectorAll('.ibm-mlogo-fade-slot img');
     if (!slots.length) return;
@@ -195,6 +204,12 @@ try {
         setTimeout(function() {
           index = (index + GROUP_SIZE) % LOGOS.length;
           setGroup(index);
+          if (IS_IPHONE) {
+            // Force a synchronous reflow before fading back in, so iOS Safari
+            // actually flushes the new image instead of showing a stale
+            // composited frame underneath it.
+            slots.forEach(function(img) { void img.offsetHeight; });
+          }
           slots.forEach(function(img) { img.classList.remove('ibm-fade-out'); });
         }, 500); // matches the CSS transition duration
       }, 2800); // how long each group stays visible before cycling
@@ -727,4 +742,55 @@ onScroll();
 
 });
 } catch(e) { console.warn("Script error in detail-pass components:", e); }
+})();
+
+// ===== iPhone-only: fix "stuck" hover states after tapping a card =====
+// iOS Safari has a known quirk where tapping an element can trigger its
+// :hover CSS state and leave it stuck on (e.g. the green accent bar on
+// coach/service cards) until something else is tapped. Adding a no-op
+// touchstart listener is the standard, minimal fix for this — it changes
+// nothing about the CSS itself and only ever runs on iPhone/iPod, so
+// Android and desktop behavior are completely untouched.
+(function() {
+try {
+  var isIphone = /iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+  if (isIphone) {
+    document.addEventListener('touchstart', function() {}, { passive: true });
+    document.documentElement.classList.add('ibm-iphone');
+  }
+} catch(e) { console.warn("Script error in iPhone hover-stick fix:", e); }
+})();
+
+// ===== Mobile/touch: make the green top-accent bar show reliably on tap =====
+// Relying on the browser's native tap-triggers-:hover behavior turned out to
+// be inconsistent specifically for the first card in a grid, on both iPhone
+// and Android. The first attempt at fixing this (attaching a listener to
+// each card individually at page-load) turned out to itself be unreliable
+// for the very first cards on a page — confirmed by screenshots showing it
+// working correctly for later cards but never triggering at all for the
+// first ones. Rebuilt using event delegation on the document instead, which
+// doesn't depend on exactly when each card's own listener got attached.
+// Desktop mouse :hover is completely untouched either way.
+(function() {
+try {
+  var isTouchDevice = window.matchMedia('(hover: none)').matches;
+  if (!isTouchDevice) return;
+
+  var cardSelector = '.ib-recruiting-card, .series79-card, .pe-card, .cp-feature-card, .cp-step-card, .team-card, .resources-card-item, .ibm-svc-card';
+  var activeCard = null;
+
+  document.addEventListener('touchstart', function(e) {
+    var tappedCard = e.target.closest(cardSelector);
+
+    if (activeCard && activeCard !== tappedCard) {
+      activeCard.classList.remove('ibm-card-tapped');
+      activeCard = null;
+    }
+
+    if (tappedCard) {
+      tappedCard.classList.add('ibm-card-tapped');
+      activeCard = tappedCard;
+    }
+  }, { passive: true });
+} catch(e) { console.warn("Script error in mobile card tap accent fix:", e); }
 })();

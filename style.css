@@ -2539,10 +2539,12 @@ max-width: 490px;
 transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
+@media (hover: hover) and (pointer: fine) {
 .team-card:hover {
 transform: translateY(-6px);
 box-shadow: var(--ibm-shadow-card-hover);
 border-color: rgba(16,185,129,0.35);
+}
 }
 
 .highlight-card {
@@ -2760,10 +2762,12 @@ transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
 box-sizing: border-box;
 }
 
+@media (hover: hover) and (pointer: fine) {
 .ib-recruiting-card:hover {
 transform: translateY(-6px);
 box-shadow: var(--ibm-shadow-card-hover);
 border-color: var(--ibm-green);
+}
 }
 
 .ib-recruiting-card .card-title {
@@ -3028,10 +3032,12 @@ transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
 box-sizing: border-box;
 }
 
+@media (hover: hover) and (pointer: fine) {
 .series79-card:hover {
 transform: translateY(-6px);
 border-color: var(--ibm-green);
 box-shadow: var(--ibm-shadow-card-hover);
+}
 }
 
 .series79-card .card-title {
@@ -3204,10 +3210,12 @@ box-sizing: border-box;
 transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
 }
 
+@media (hover: hover) and (pointer: fine) {
 .pe-card:hover {
 transform: translateY(-5px);
 border-color: #10b981 !important;
 box-shadow: 0 15px 30px -10px rgba(16, 185, 129, 0.15);
+}
 }
 
 .pe-card-header {
@@ -3420,10 +3428,12 @@ max-width: 490px !important;
 transition: transform 0.2s ease, box-shadow 0.2s ease !important;
 }
 
+@media (hover: hover) and (pointer: fine) {
 .cp-feature-card:hover {
 transform: translateY(-6px) !important;
 box-shadow: var(--ibm-shadow-card-hover) !important;
 border-color: rgba(16,185,129,0.35) !important;
+}
 }
 
 .cp-feature-card h4 {
@@ -3461,10 +3471,12 @@ box-sizing: border-box !important;
 transition: transform 0.2s ease, box-shadow 0.2s ease !important;
 }
 
+@media (hover: hover) and (pointer: fine) {
 .cp-step-card:hover {
 transform: translateY(-6px) !important;
 box-shadow: var(--ibm-shadow-card-hover) !important;
 border-color: rgba(16,185,129,0.35) !important;
+}
 }
 
 .cp-num {
@@ -4197,7 +4209,9 @@ padding: 24px; display: flex; flex-direction: column; justify-content: space-bet
 box-shadow: var(--ibm-shadow-card); transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.3s ease; box-sizing: border-box;
 }
 
+@media (hover: hover) and (pointer: fine) {
 .resources-card-item:hover { transform: translateY(-6px); border-color: rgba(16, 185, 129, 0.4); box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.05); }
+}
 
 .card-meta-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
 
@@ -5260,7 +5274,9 @@ to { opacity: 0; transform: translateY(-14px); }
 .ibm-svc-title { font-family: 'Playfair Display', Georgia, serif; font-size: 2.6rem; font-weight: 800; color: #111111; margin: 10px 0 0 0; }
 .ibm-svc-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; }
 .ibm-svc-card { display: block; background-color: #ffffff; border: 1px solid rgba(23,25,59,0.08); box-shadow: var(--ibm-shadow-card); border-radius: 12px; padding: 32px; text-decoration: none; transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease; }
+@media (hover: hover) and (pointer: fine) {
 .ibm-svc-card:hover { transform: translateY(-6px); box-shadow: var(--ibm-shadow-card-hover); border-color: var(--ibm-green); }
+}
 .ibm-svc-card h3 { font-family: 'Playfair Display', Georgia, serif; font-size: 1.4rem; color: #111111; margin: 0 0 10px 0; }
 .ibm-svc-card p { font-size: 14px; color: #4a5568; margin: 0 0 16px 0; line-height: 1.5; }
 .ibm-svc-arrow { font-size: 13px; font-weight: 700; color: #10b981; }
@@ -5338,13 +5354,19 @@ box-shadow: 0 4px 20px rgba(23,25,59,0.1);
 /* ---- Scroll progress bar pinned under the nav ---- */
 #ibm-scroll-progress {
 position: fixed;
-top: 0;
+top: 70px;
 left: 0;
 height: 3px;
 width: 0%;
 background: linear-gradient(90deg, var(--ibm-green), var(--ibm-navy));
 z-index: 9999;
+pointer-events: none;
 transition: width 0.1s linear;
+}
+@media screen and (max-width: 768px) {
+#ibm-scroll-progress {
+top: 60px;
+}
 }
 
 /* ---- Floating back-to-top button ---- */
@@ -5411,6 +5433,7 @@ top: 0;
 left: 0;
 right: 0;
 height: 3px;
+border-radius: 12px 12px 0 0;
 background: linear-gradient(90deg, var(--ibm-green), var(--ibm-navy));
 transform: scaleX(0);
 transform-origin: left;
@@ -5784,5 +5807,60 @@ scrollbar-width: none !important;
 display: none !important;
 width: 0 !important;
 height: 0 !important;
+}
+}
+
+
+/* ==========================================================================
+   NEW: iPhone-only fix for the "Trusted by Clients From" fade carousel.
+   The .ibm-ios-logo-fix class is added to <html> only on iPhone (see
+   script.js) — this rule never applies on laptop, Android, or anywhere else.
+   Forces each logo image onto its own GPU layer so Safari fully repaints it
+   on src swap instead of leaving a stale frame composited underneath.
+   ========================================================================== */
+.ibm-ios-logo-fix .ibm-mlogo-fade-slot img {
+-webkit-transform: translateZ(0);
+transform: translateZ(0);
+-webkit-backface-visibility: hidden;
+backface-visibility: hidden;
+}
+
+/* ==========================================================================
+   NEW: iPhone-only — form fields were at 14–15px, which is under the 16px
+   threshold that makes iOS Safari auto-zoom the whole page in when you tap
+   into a field. Android and desktop don't have this behavior at all, so
+   this only bumps the size on actual iPhones (via the .ibm-iphone class
+   added in script.js) — Android and desktop input sizes are untouched.
+   ========================================================================== */
+html.ibm-iphone .form-group input,
+html.ibm-iphone .form-group textarea,
+html.ibm-iphone .field-group input {
+font-size: 16px !important;
+}
+
+/* ==========================================================================
+   NEW: pairs with the JS above — directly shows the exact same green top
+   bar when a card gets the tap-driven class, identical to the desktop
+   :hover effect above. Doesn't touch or replace that :hover rule at all.
+   ========================================================================== */
+.ibm-card-tapped::before {
+transform: scaleX(1) !important;
+}
+
+/* Touch devices: the lift/shadow/border on tap is now driven entirely by
+   the JS above adding this class — not by native :hover, which is what was
+   getting inconsistently "stuck" and causing cards (mainly the first one
+   in a row) to shift up under the fixed nav, hiding part of the card. */
+@media (hover: none) {
+.ib-recruiting-card.ibm-card-tapped,
+.series79-card.ibm-card-tapped,
+.pe-card.ibm-card-tapped,
+.cp-feature-card.ibm-card-tapped,
+.cp-step-card.ibm-card-tapped,
+.team-card.ibm-card-tapped,
+.resources-card-item.ibm-card-tapped,
+.ibm-svc-card.ibm-card-tapped {
+box-shadow: var(--ibm-shadow-card-hover);
+border-color: rgba(16,185,129,0.35);
 }
 }
