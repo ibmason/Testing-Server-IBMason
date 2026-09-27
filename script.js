@@ -241,7 +241,7 @@ try {
     if (el.dataset.counted === 'true') return;
     el.dataset.counted = 'true';
 
-    var raw = el.textContent.trim().replace(/,/g, '');
+    var raw = (el.dataset.target || el.textContent).trim().replace(/,/g, '');
     var target = parseFloat(raw);
     if (isNaN(target)) return;
 
@@ -282,6 +282,12 @@ try {
       return;
     }
 
+    // Start every number at 0 so visitors never see the final value flash first
+    targets.forEach(function(el) {
+      el.dataset.target = el.textContent.trim();
+      el.textContent = '0';
+    });
+
     var observer = new IntersectionObserver(function(entries) {
       entries.forEach(function(entry) {
         if (entry.isIntersecting) {
@@ -289,7 +295,7 @@ try {
           observer.unobserve(entry.target);
         }
       });
-    }, { threshold: 0.4, rootMargin: '0px 0px -40px 0px' });
+    }, { threshold: 0.6, rootMargin: '0px 0px -60px 0px' });
 
     targets.forEach(function(el) { observer.observe(el); });
   }
@@ -785,4 +791,49 @@ try {
     window.addEventListener('load', normalizeMarqueeSpeed);
   }
 } catch(e) { console.warn("Script error in marquee speed normalization:", e); }
+})();
+
+// ===== FAQ "View Our 4 Step Process" button: show the homepage first, then scroll down slowly =====
+(function() {
+try {
+  if (window.location.hash !== '#go-coaching-process') return;
+  var target = document.getElementById('coaching-process');
+  if (!target) return;
+  window.scrollTo(0, 0);
+
+  var cancelled = false;
+  function cancel() { cancelled = true; }
+  // If the visitor starts scrolling on their own, don't take over
+  ['wheel', 'touchstart', 'keydown'].forEach(function(evt) {
+    window.addEventListener(evt, cancel, { once: true, passive: true });
+  });
+
+  function slowScroll() {
+    if (cancelled) return;
+    var root = document.documentElement;
+    root.style.setProperty('scroll-behavior', 'auto', 'important');
+    var startY = window.pageYOffset;
+    var offset = parseInt(getComputedStyle(target).scrollMarginTop, 10) || 90;
+    var endY = target.getBoundingClientRect().top + startY - offset;
+    var duration = 1800;
+    var startTime = null;
+    function ease(t) { return t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2; }
+    function step(ts) {
+      if (cancelled) { root.style.removeProperty('scroll-behavior'); return; }
+      if (!startTime) startTime = ts;
+      var p = Math.min((ts - startTime) / duration, 1);
+      window.scrollTo(0, startY + (endY - startY) * ease(p));
+      if (p < 1) { requestAnimationFrame(step); }
+      else {
+        root.style.removeProperty('scroll-behavior');
+        history.replaceState(null, '', window.location.pathname + '#coaching-process');
+      }
+    }
+    requestAnimationFrame(step);
+  }
+
+  function begin() { setTimeout(slowScroll, 1000); }
+  if (document.readyState === 'complete') begin();
+  else window.addEventListener('load', begin);
+} catch(e) { console.warn('FAQ scroll script error:', e); }
 })();
