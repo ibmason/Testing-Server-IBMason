@@ -446,7 +446,7 @@ margin-right: -50vw !important;
 width: 100vw !important;
 height: 90vh;
 min-height: 650px;
-background: url('https://cdn.phototourl.com/free/2026-07-17-176b28f6-ee88-4992-bcb6-4767c3d18abb.jpg') no-repeat center center;
+background: url('assets/images/hero-cityscape.jpg') no-repeat center center;
 background-size: cover;
 background-attachment: fixed;
 display: flex;
@@ -502,6 +502,7 @@ letter-spacing: -0.5px;
 
 .hero-highlight {
 color: #10b981;
+white-space: nowrap;
 }
 
 .hero-lead-text {
@@ -907,6 +908,8 @@ transition: transform 0.25s ease;
 }
 .marquee-set img:hover {
 transform: scale(1.12);
+position: relative;
+z-index: 5;
 }
 
 /* Specific Dimension Overrides without Scale Transform (Prevents Scrollbars) */
@@ -1583,6 +1586,7 @@ text-transform: uppercase;
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap');
 
 #coaching-process {
+scroll-margin-top: 90px;
 background-color: #EDF0F2;
 padding: 80px 40px;
 font-family: 'Plus Jakarta Sans', sans-serif;
@@ -1917,7 +1921,7 @@ user-select: none;
 
 .results-title { font-size: 20px; font-weight: 700; margin: 0 0 25px 0; }
 
-.score-ring-wrap { position: relative; width: 140px; height: 140px; margin: 0 auto 24px auto; }
+.score-ring-wrap { position: relative; width: 200px; height: 200px; margin: 0 auto 24px auto; }
 
 .score-ring { width: 100%; height: 100%; transform: rotate(-90deg); }
 
@@ -1945,7 +1949,7 @@ display: flex; flex-direction: column; align-items: center; justify-content: cen
 
 .score-ring-label small { font-size: 15px; font-weight: 700; color: #1a1a1a; margin-left: 1px; }
 
-.score-ring-caption { font-size: 9px; font-weight: 700; color: #8892a0; text-transform: uppercase; letter-spacing: 1px; margin-top: 4px; }
+.score-ring-caption { font-size: 8px; font-weight: 700; color: #8892a0; text-transform: uppercase; letter-spacing: 0.5px; margin-top: 4px; max-width: 110px; text-align: center; line-height: 1.3; }
 
 .results-summary-p { font-size: 13.5px; line-height: 1.65; color: #5a626a; max-width: 480px; margin: 0 auto; }
 
@@ -1989,7 +1993,8 @@ user-select: none;
 
 /* ===== university-outreach ===== */
 /* ULTRAGRESSIVE BACKGROUND FORCING RULE */
-#workshops {
+#workshops,
+#series79-home {
 position: relative !important;
 left: 50% !important;
 right: 50% !important;
@@ -2127,7 +2132,8 @@ left: 0;
 
 /* ================= PERFECT MOBILE CENTERING & UI ENHANCEMENTS ================= */
 @media (max-width: 768px) {
-#workshops {
+#workshops,
+#series79-home {
 position: static !important;
 left: auto !important;
 right: auto !important;
@@ -5132,7 +5138,7 @@ height: 34px;
 display: block;
 width: 34px;
 height: 34px;
-background-image: url('https://cdn.phototourl.com/free/2026-07-17-40c85347-066c-406a-b03c-4c0fcaae5034.png');
+background-image: url('assets/images/tiktok-icon.png');
 background-size: contain;
 background-position: center;
 background-repeat: no-repeat;
@@ -5738,19 +5744,6 @@ background-color: #f2f6f5 !important;
    NEW: Pre-Desk "Core Mastery Areas" — icon per pillar + a distinct accent
    color per card instead of 4 identical flat gray boxes.
    ========================================================================== */
-.cp-feature-card h4 {
-position: relative;
-}
-.cp-feature-card h4::before {
-display: block;
-font-size: 30px;
-margin-bottom: 12px;
-}
-.cp-grid-4 .cp-feature-card:nth-child(1) h4::before { content: "⚙️"; }
-.cp-grid-4 .cp-feature-card:nth-child(2) h4::before { content: "📊"; }
-.cp-grid-4 .cp-feature-card:nth-child(3) h4::before { content: "⚡"; }
-.cp-grid-4 .cp-feature-card:nth-child(4) h4::before { content: "🎯"; }
-
 .cp-grid-4 .cp-feature-card {
 border-top: 3px solid transparent !important;
 }
@@ -5862,5 +5855,27 @@ transform: scaleX(1) !important;
 .ibm-svc-card.ibm-card-tapped {
 box-shadow: var(--ibm-shadow-card-hover);
 border-color: rgba(16,185,129,0.35);
+}
+}
+
+/* ==========================================================================
+   NEW: wrapper for the 3 free-resource pop-up pages (Application Tracker,
+   Coffee Chat Questions, Messaging Template). These had no section wrapper
+   at all before, so the card sat with zero top clearance and was getting
+   cut off under the fixed nav, worst on mobile. Matches the same proven
+   padding pattern already used correctly on the Contact page.
+   ========================================================================== */
+.free-resource-wrapper {
+background-color: #fcfcfd;
+padding: 130px 20px 80px 20px;
+display: flex;
+justify-content: center;
+align-items: center;
+box-sizing: border-box;
+min-height: 100vh;
+}
+@media screen and (max-width: 768px) {
+.free-resource-wrapper {
+padding: 150px 16px 60px 16px;
 }
 }

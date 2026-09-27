@@ -136,7 +136,7 @@ try {
 (function() {
 try {
 (function() {
-  var LOGOS = [["https://www.image2url.com/r2/default/images/1783832204311-af84a679-dc4d-41ae-95d4-b6db4a02451e.png", "Apollo"], ["https://www.image2url.com/r2/default/images/1783832241704-4198987c-ae9f-47e7-90fa-86452c1267dc.png", "Bank of America"], ["https://www.image2url.com/r2/default/images/1783832245458-8a62381b-fc16-4b7e-ba47-940d71478d00.png", "Barclays"], ["https://www.image2url.com/r2/default/images/1783832251518-1fe46456-0ec5-48fe-8d70-97985d3f4ae6.png", "Citi"], ["https://www.image2url.com/r2/default/images/1783832254496-5b24e568-2556-4eed-b5c2-23f4ff6ef121.png", "Cornell"], ["https://www.image2url.com/r2/default/images/1783832316087-3697c180-4e14-4a29-ac68-96ca39e377d5.png", "Evercore"], ["https://www.image2url.com/r2/default/images/1783832314485-5f482b16-4681-4d7e-84c4-865356166d29.png", "Goldman Sachs"], ["https://www.image2url.com/r2/default/images/1783832313065-33ecd907-7d47-444f-8ae1-58704a16b96a.png", "Harvard"], ["https://www.image2url.com/r2/default/images/1783832311580-18cc755a-cbf5-4685-85e7-956ccaa4373f.png", "JPMorgan"], ["https://www.image2url.com/r2/default/images/1783832358385-546782a7-6c49-45a0-8561-13c0df6a76d0.png", "Jefferies"], ["https://cdn.phototourl.com/free/2026-07-12-c8aafce8-552b-4ad4-8b0e-b79b1223ebe3.png", "Lazard"], ["https://cdn.phototourl.com/free/2026-07-12-98990894-0f63-4112-904b-275eae9d6290.png", "MIT"], ["https://cdn.phototourl.com/free/2026-07-12-d121affd-c1a5-46e1-9b72-e889a8feb508.png", "Moelis"], ["https://cdn.phototourl.com/free/2026-07-12-bb9a6866-be08-4657-97fb-21f5dddda5db.png", "Morgan Stanley"], ["https://cdn.phototourl.com/free/2026-07-12-d2274af3-1eda-4e01-8a7b-f92af9c249f2.gif", "Piper Sandler"], ["https://cdn.phototourl.com/free/2026-07-12-152f51a0-de1b-44a8-b9e6-778af6db47ef.png", "Raymond James"], ["https://cdn.phototourl.com/free/2026-07-12-af19a262-a70a-44a3-a3aa-7e6640a95602.webp", "RBC"], ["https://cdn.phototourl.com/free/2026-07-12-82968dc1-b93f-4e29-b00f-57092b66ad44.png", "Stanford"], ["https://cdn.phototourl.com/free/2026-07-12-ddb8b60e-c8a4-4d16-8496-570d8b930eb5.png", "UBS"], ["https://cdn.phototourl.com/free/2026-07-12-9fde7067-61bd-4680-81f8-5df7995d0c6b.png", "University of Chicago"], ["https://pdftourl.net/images/1783832904501-9c8207cb-574b-40c4-b1c2-f76e10d4f563.png", "University of Virginia"], ["https://pdftourl.net/images/1783832927985-296f3a39-ba26-4b59-b181-c932c05f6d03.png", "Vanderbilt"], ["https://pdftourl.net/images/1783832938051-b6d795a9-b166-4d94-8503-e8075f904d27.png", "Virginia Tech"], ["https://pdftourl.net/images/1783832951186-b55d7340-219f-4839-a87c-bdb832198bd3.png", "Yale"], ["https://pdftourl.net/images/1783832963888-04cf93f7-0cd0-4bce-91bd-6faf1be633dc.png", "Wells Fargo"]];
+  var LOGOS = [["assets/images/apollo.png", "Apollo"], ["assets/images/bank-of-america-2.png", "Bank of America"], ["assets/images/barclays.png", "Barclays"], ["assets/images/citi.png", "Citi"], ["assets/images/cornell.png", "Cornell"], ["assets/images/evercore-2.png", "Evercore"], ["assets/images/goldman-sachs-2.png", "Goldman Sachs"], ["assets/images/harvard.png", "Harvard"], ["assets/images/jpmorgan.png", "JPMorgan"], ["assets/images/jefferies.png", "Jefferies"], ["assets/images/lazard-2.png", "Lazard"], ["assets/images/mit.png", "MIT"], ["assets/images/moelis.png", "Moelis"], ["assets/images/morgan-stanley.png", "Morgan Stanley"], ["assets/images/piper-sandler.gif", "Piper Sandler"], ["assets/images/raymond-james.png", "Raymond James"], ["assets/images/rbc.webp", "RBC"], ["assets/images/stanford.png", "Stanford"], ["assets/images/ubs.png", "UBS"], ["assets/images/university-of-chicago.png", "University of Chicago"], ["assets/images/university-of-virginia.png", "University of Virginia"], ["assets/images/vanderbilt.png", "Vanderbilt"], ["assets/images/virginia-tech.png", "Virginia Tech"], ["assets/images/yale.png", "Yale"], ["assets/images/wells-fargo-2.png", "Wells Fargo"]];
 
   var ROW_COUNT = 4;
   // Several source logo files have much more internal padding baked in than
@@ -420,19 +420,19 @@ var tierInfo;
 
 if (score >= 90) {
 
-tierInfo = { tier: 'ELITE STANDING', desc: 'Your baseline profile is exceptionally strong for competitive recruiting — the fundamentals are already in place.' };
+tierInfo = { tier: 'ELITE STANDING', desc: 'Your profile is very strong for competitive recruiting, and the fundamentals are already in place.' };
 
 } else if (score >= 75) {
 
-tierInfo = { tier: 'STRONG STANDING', desc: 'You have a highly competitive profile with a clear structural edge over most of the applicant pool.' };
+tierInfo = { tier: 'STRONG STANDING', desc: 'You have a competitive profile with a real edge over most applicants.' };
 
 } else if (score >= 60) {
 
-tierInfo = { tier: 'MODERATE STANDING', desc: 'You possess a competitive base profile, but strategic structural adjustments are required to secure high-end boutique offers.' };
+tierInfo = { tier: 'MODERATE STANDING', desc: 'You have a solid base, but a few targeted changes will make a big difference for top boutique offers.' };
 
 } else {
 
-tierInfo = { tier: 'FOUNDATIONAL STANDING', desc: 'You have real potential, but you need focused, structural work now to close the gap to elite offers before the window narrows.' };
+tierInfo = { tier: 'FOUNDATIONAL STANDING', desc: 'You have real potential, but you need focused work now to close the gap before recruiting picks up.' };
 
 }
 
@@ -440,26 +440,26 @@ var schoolNote = {
 
 target: 'coming from a target program',
 
-semi: 'coming from a semi-target program',
+semi: 'coming from a semi target program',
 
-non: 'as a non-target candidate'
+non: 'as a non target candidate'
 
 }[answers.school.val] || '';
 
 var weakNoteMap = {
 
-outreach: { label: 'networking pipeline and cold outreach strategy', next: 'Prioritize a structured outreach cadence — the messaging, timing, and follow-up system that turns cold emails into first-round interviews.' },
+outreach: { label: 'networking and cold outreach', next: 'Focus on a clear outreach plan: what to send, when to send it, and how to follow up so cold emails turn into first round interviews.' },
 
-technical: { label: 'technical modeling and DCF fluency', next: 'Prioritize technical drilling — DCF mechanics, valuation frameworks, and the modeling speed interviewers expect on Superdays.' },
+technical: { label: 'technical and DCF skills', next: 'Focus on technical practice: DCFs, valuation, and the modeling speed interviewers expect on Superdays.' },
 
-narrative: { label: 'personal narrative and behavioral storytelling', next: 'Prioritize your story — a sharp "Why Investment Banking" and "Why This Bank" answer that sounds genuine, not rehearsed.' }
-}[answers.weak.val] || { label: 'preparation pipeline', next: 'Book a free strategy session to review.' };
+narrative: { label: 'personal story and behavioral answers', next: 'Focus on your story: a sharp "Why Investment Banking" and "Why This Bank" answer that sounds genuine, not rehearsed.' }
+}[answers.weak.val] || { label: 'preparation', next: 'Book a free strategy session to review.' };
 
-var summary = tierInfo.desc + ' Given that you\'re ' + schoolNote + ', your single highest-leverage opportunity right now is your ' + weakNoteMap.label + '.';
+var summary = tierInfo.desc + ' Given that you\'re ' + schoolNote + ', your biggest opportunity right now is your ' + weakNoteMap.label + '.';
 
 document.getElementById('resultsSummary').textContent = summary;
 
-document.getElementById('resultsNextStep').textContent = weakNoteMap.next + ' Book a free 1-on-1 strategy session to build the exact plan for your timeline.';
+document.getElementById('resultsNextStep').textContent = weakNoteMap.next + ' Book a free one on one strategy session to build the exact plan for your timeline.';
 
 document.getElementById('scoreTier').textContent = tierInfo.tier;
 
@@ -631,47 +631,10 @@ msg.style.display = 'block';
 } catch(e) { console.warn("Script error in messaging-template-free-resources-pop-up-important:", e); }
 })();
 
-// ===== faq =====
-(function() {
-try {
-function triggerSectionScroll() {
-// Set flag so destination section knows to scroll
-sessionStorage.setItem('pendingScrollToHIW', 'true');
-}
-
-function checkAndPerformScroll() {
-if (sessionStorage.getItem('pendingScrollToHIW') === 'true') {
-// Poll briefly to ensure Carrd finishes DOM rendering and scroll reset
-var checkCount = 0;
-var scrollInterval = setInterval(function() {
-var target = document.getElementById('how-it-works-section');
-checkCount++;
-
-if (target && target.offsetParent !== null) { // Ensures element is visible
-clearInterval(scrollInterval);
-sessionStorage.removeItem('pendingScrollToHIW');
-
-// Timeout gives Carrd's scroll-to-top handler time to finish before we scroll down
-setTimeout(function() {
-var yOffset = -40; // Optional offset for header clearance
-var y = target.getBoundingClientRect().top + window.pageYOffset + yOffset;
-window.scrollTo({ top: y, behavior: 'smooth' });
-}, 150);
-}
-
-if (checkCount > 30) { // Safety fallback after 3s
-clearInterval(scrollInterval);
-sessionStorage.removeItem('pendingScrollToHIW');
-}
-}, 100);
-}
-}
-
-// Run on initial load and whenever Carrd switches sections via hashchange
-window.addEventListener('load', checkAndPerformScroll);
-window.addEventListener('hashchange', checkAndPerformScroll);
-} catch(e) { console.warn("Script error in faq:", e); }
-})();
+// ===== faq: 4-Step Process button now uses a plain #coaching-process anchor
+// link instead of custom JS + sessionStorage, so the browser's own native
+// anchor-scroll handles it directly. See the scroll-margin-top rule on
+// #coaching-process in style.css for the fixed-nav clearance. =====
 
 // ===== Page Transition Animation + Same-page Nav Scroll-to-top =====
 (function() {
@@ -793,4 +756,33 @@ try {
     }
   }, { passive: true });
 } catch(e) { console.warn("Script error in mobile card tap accent fix:", e); }
+})();
+
+// ===== Marquee: normalize scroll speed across rows with different logo counts =====
+// Rows don't all have the same number of logos (one row has 7 vs 6 in the others),
+// so a single fixed animation-duration for every row made rows with more content
+// visibly scroll faster, since they had to travel further in the same amount of
+// time. This measures each row's real width and sets its duration proportionally,
+// so every row moves at the same actual pixels-per-second speed.
+(function() {
+try {
+  function normalizeMarqueeSpeed() {
+    var tracks = document.querySelectorAll('.marquee-track');
+    var PIXELS_PER_SECOND = 45; // consistent speed target for every row
+
+    tracks.forEach(function(track) {
+      var fullWidth = track.scrollWidth / 2; // one full set, since content is duplicated for the loop
+      if (fullWidth > 0) {
+        var duration = fullWidth / PIXELS_PER_SECOND;
+        track.style.animationDuration = duration + 's';
+      }
+    });
+  }
+
+  if (document.readyState === 'complete') {
+    normalizeMarqueeSpeed();
+  } else {
+    window.addEventListener('load', normalizeMarqueeSpeed);
+  }
+} catch(e) { console.warn("Script error in marquee speed normalization:", e); }
 })();
